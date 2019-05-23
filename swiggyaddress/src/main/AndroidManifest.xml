@@ -6,8 +6,12 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application>
-        <activity android:name=".SelectLocationActivity" />
-        <activity android:name=".SelectLocationDetailsActivity" />
+        <activity
+            android:name=".SelectLocationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SelectLocationDetailsActivity"
+            android:screenOrientation="portrait" />
 
         <service
             android:name=".util.location.FusedLocationService"
