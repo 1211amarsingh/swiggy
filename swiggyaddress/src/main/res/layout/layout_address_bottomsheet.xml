@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ll_bottom_sheet"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:clickable="true"
+    android:orientation="vertical"
+    app:behavior_hideable="false"
+    app:behavior_peekHeight="240dp"
+    app:layout_behavior="@string/bottom_sheet_behavior">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Set Location"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/font_size_small"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_skip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:text="SKIP"
+                    android:textColor="#FF2196F3"
+                    android:textSize="@dimen/font_size_tiny"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+                android:hint="LOCATION">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/tiet_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:editable="false"
+                    android:hint="Identifying Location"
+                    android:maxLines="2"
+                    android:minLines="2"
+                    android:textSize="@dimen/font_size_very_small" />
+            </android.support.design.widget.TextInputLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="5dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_add_more"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/round_rectangle_green_border"
+                    android:gravity="center"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:text="ADD MORE DETAILS"
+                    android:textSize="@dimen/font_size_very_small" />
+
+                <TextView
+                    android:id="@+id/tv_done"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/round_rectangle_green"
+                    android:gravity="center"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:text="CONFIRM LOCATION"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font_size_very_small" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_bottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:hint="HOUSE / FLAT NO.">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/tiet_house_no"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:textSize="@dimen/font_size_very_small" />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:hint="LANDMARK">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/tiet_landmark"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text|textCapWords"
+                        android:imeOptions="actionDone"
+                        android:singleLine="true"
+                        android:textSize="@dimen/font_size_very_small" />
+                </android.support.design.widget.TextInputLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:text="SAVE AS"
+                    android:textColorHint="#BDBDBD"
+                    android:textSize="@dimen/font_size_very_tiny" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:orientation="horizontal">
+
+                    <com.kv.swiggyaddress.util.SelectedLinearLayout
+                        android:id="@+id/ll_selected"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="3"
+                        android:orientation="horizontal"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp">
+
+                        <TextView
+                            android:id="@+id/tb_home"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@drawable/tooglebutton_selector"
+                            android:drawableLeft="@drawable/togglebutton_selector_home"
+                            android:paddingBottom="2.6dp"
+                            android:text="Home"
+                            android:textAllCaps="false"
+                            android:textColor="@drawable/textselector"
+                            android:textSize="@dimen/font_size_very_small" />
+
+                        <TextView
+                            android:id="@+id/tb_work"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="30dp"
+                            android:layout_marginRight="30dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/tooglebutton_selector"
+                            android:drawableLeft="@drawable/togglebutton_selector_office"
+                            android:paddingBottom="2.6dp"
+                            android:text="Work"
+                            android:textAllCaps="false"
+                            android:textColor="@drawable/textselector"
+                            android:textSize="@dimen/font_size_very_small" />
+
+                        <TextView
+                            android:id="@+id/tb_title"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@drawable/tooglebutton_selector"
+                            android:drawableLeft="@drawable/ic_add_location"
+                            android:paddingBottom="2.6dp"
+                            android:text="Other"
+                            android:textAllCaps="false"
+                            android:textColor="@drawable/textselector"
+                            android:textSize="@dimen/font_size_very_small" />
+                    </com.kv.swiggyaddress.util.SelectedLinearLayout>
+
+                    <com.kv.swiggyaddress.util.drawable_edittext_click.CustomEditText
+                        android:id="@+id/tiet_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/ic_add_location"
+                        android:drawableRight="@drawable/ic_close"
+                        android:hint="Other"
+                        android:inputType="text|textCapWords"
+                        android:singleLine="true"
+                        android:textSize="@dimen/font_size_very_small"
+                        android:visibility="gone" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_submit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/round_rectangle_green"
+                    android:gravity="center"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:text="SAVE AND PROCEED"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font_size_very_small" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

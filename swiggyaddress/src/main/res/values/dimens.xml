@@ -1,0 +1,6 @@
+<resources>
+    <dimen name="font_size_very_tiny">10sp</dimen>
+    <dimen name="font_size_tiny">12sp</dimen>
+    <dimen name="font_size_very_small">14sp</dimen>
+    <dimen name="font_size_small">16sp</dimen>
+</resources>
