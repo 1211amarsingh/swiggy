@@ -56,10 +56,10 @@ Download sample for better understanding
             android:value="Your_API_KEY" />```<br><br>
 <b> Step2.</b> Add <b>Gradle</b>  in app.gradle<br><br>
 <b> Step3.</b> Add Compile Options in app. gradle<br>
-          ```compileOptions {
+<pre>compileOptions {
                     sourceCompatibility = '1.8'
                     targetCompatibility = '1.8'
-              }```<br><br>
+}<pre><br>
 <b> Step4.</b> Follow <b>Usage </b> as required<br><br>
 <b> Step5.</b> Last Step <b>@Override onActivityResult</b> Here you wil get your result
 <pre> @Override
