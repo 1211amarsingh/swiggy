@@ -356,7 +356,7 @@ public class SelectLocationDetailsActivity extends AppCompatActivity
         mMap.setMyLocationEnabled(true);
         mMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(this, R.raw.custom_map));
         mMap.setOnCameraMoveStartedListener(i -> {
-            tietAddress.setText("");//Log.loge("CameraMoveStarted " + i);//1- touch/ gesure, 2 - key press, 3- autozoom /camerafocus
+            tietAddress.setText(" ");//Log.loge("CameraMoveStarted " + i);//1- touch/ gesure, 2 - key press, 3- autozoom /camerafocus
             setupDoneAddMoreButton();
             if (i == 1) {
                 mMap.getUiSettings().setMyLocationButtonEnabled(true);
@@ -389,7 +389,7 @@ public class SelectLocationDetailsActivity extends AppCompatActivity
             latitude = addresses.get(0).getLatitude();
             longitude = addresses.get(0).getLongitude();
         } else {
-            tietAddress.setText("");
+            tietAddress.setText(" ");
             showDialogCustom();
         }
         dialogshowing = false;
