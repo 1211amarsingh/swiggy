@@ -51,15 +51,20 @@ Download sample for better understanding
 
 ## How to Implement
 <b> Step1.</b> Add Your_API_KEY In Manifest<br>
-          ```<meta-data
+```
+<meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="Your_API_KEY" />```<br><br>
+            android:value="Your_API_KEY" />
+```
+
 <b> Step2.</b> Add <b>Gradle</b>  in app.gradle<br><br>
 <b> Step3.</b> Add Compile Options in app. gradle<br>
-<pre>compileOptions {
-                    sourceCompatibility = '1.8'
-                    targetCompatibility = '1.8'
-}<pre><br>
+<pre>
+compileOptions {
+		sourceCompatibility = '1.8'
+		targetCompatibility = '1.8'
+}
+</pre><br>
 <b> Step4.</b> Follow <b>Usage </b> as required<br><br>
 <b> Step5.</b> Last Step <b>@Override onActivityResult</b> Here you wil get your result
 <pre> @Override
