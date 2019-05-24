@@ -5,15 +5,20 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.reward.RewardedVideoAd;
 import com.kv.swiggyaddress.SelectLocationActivity;
-import com.kv.swiggyaddress.util.Log;
 import com.kv.swiggyaddress.util.Toast;
 import com.kv.swiggyaddress.util.UserData;
 
+import java.nio.MappedByteBuffer;
 import java.util.ArrayList;
 
 import butterknife.BindView;
@@ -44,12 +49,39 @@ public class MainActivity extends AppCompatActivity {
     TextView tvLat;
     @BindView(R.id.tv_lng)
     TextView tvLng;
+    private RewardedVideoAd rewardedVideoAd;
+    private boolean isrewardedVideoshow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        viewAdsBanner();
+        loadRewardedVideoAd();
+    }
+
+    private void viewAdsBanner() {
+        MobileAds.initialize(this, this.getResources().getString(R.string.app_id));
+        AdView mAdView = findViewById(R.id.adView);
+        mAdView.loadAd(new AdRequest.Builder().build());
+    }
+
+    private void loadRewardedVideoAd() {
+        if (!isrewardedVideoshow) {
+            if (rewardedVideoAd == null) {
+                rewardedVideoAd = MobileAds.getRewardedVideoAdInstance(this);
+            }
+            if (!rewardedVideoAd.isLoaded()) {
+                rewardedVideoAd.loadAd(this.getResources().getString(R.string.ad_unit_id_reward1), new AdRequest.Builder().build());
+            }
+            if (rewardedVideoAd.isLoaded()) {
+                rewardedVideoAd.show();
+                isrewardedVideoshow = true;
+            } else {
+                Log.d("TAG", "The interstitial wasn't loaded yet.");
+            }
+        }
     }
 
     @Override
@@ -65,7 +97,6 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 Toast.showToast(this, "RESULT_CANCELED");
             }
-
         } else if (requestCode == REQUEST_ADD) {
             if (resultCode == RESULT_CANCELED) {
                 Toast.showToast(this, "RESULT_CANCELED");
@@ -97,6 +128,7 @@ public class MainActivity extends AppCompatActivity {
                 addNewAddress();
                 break;
         }
+        loadRewardedVideoAd();
     }
 
     private ArrayList<UserData.Address> getSavedAddress() {
