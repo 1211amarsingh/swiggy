@@ -155,6 +155,7 @@ public class SelectLocationActivity extends AppCompatActivity {
         if (userData.getAddress() == null || userData.getAddress().size() == 0) {
             tvSavedAdd.setVisibility(View.GONE);
         } else {
+            Collections.reverse(userData.getAddress());
             tvSavedAdd.setVisibility(View.VISIBLE);
             recyclerView.setHasFixedSize(true);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -170,6 +171,7 @@ public class SelectLocationActivity extends AppCompatActivity {
         if (recentAddress == null || recentAddress.getAddress().size() == 0) {
             tvRecentAdd.setVisibility(View.GONE);
         } else {
+            Collections.reverse(recentAddress.getAddress());
             tvRecentAdd.setVisibility(View.VISIBLE);
             rvRecentAdd.setHasFixedSize(true);
             rvRecentAdd.setLayoutManager(new LinearLayoutManager(this));
