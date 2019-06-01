@@ -109,15 +109,14 @@ Latest Version : [![](https://jitpack.io/v/1211amarsingh/swiggy.svg)](https://ji
 ## Contributor
 <b>Pramit Chaturvedi</b>   
 <a href="https://www.linkedin.com/in/pramit-chaturvedi-02064147/">
-		<img src="https://github.com/1211amarsingh/PrivacyPolicy/blob/master/linkedinbadge.png" style="max-width:100%;" width="30%"/>
+		<img src="https://github.com/1211amarsingh/PrivacyPolicy/blob/master/linkedinbadge.png" style="max-width:100%;" width="30%"/></a>
     
 <p align="center">
 	<a href="https://play.google.com/store/apps/details?id=com.kv.swiggyaddresspick">
-		<img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png" style="max-width:100%;" width="30%"/>
+		<img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png" style="max-width:100%;" width="30%"/></a>
 </p>
 
 <b> ▷ Other Apps: </b>
-
 * <a href="https://play.google.com/store/apps/details?id=com.kv.swiggyaddresspick">Swiggy Address Pick</a>
 * <a href="https://play.google.com/store/apps/details?id=com.kv.callrecorder">Call Recorder Free</a>
 * <a href="https://play.google.com/store/apps/details?id=com.kv.popupimageviews1">Popup Image View</a>
