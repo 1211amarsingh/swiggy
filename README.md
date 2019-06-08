@@ -1,5 +1,15 @@
 <h1>Swiggy</h1><br>
-Address Pick From Map or Plack Picker Library
+Address and Latlong Pick From Map or Plack Picker Library
+
+<h2>Key Features:</h2>
+✔ works with any version of app and display<br>
+✔ select address by placer picker, map<br>
+✔ auto save recent selected address<br>
+✔ view recent address<br>
+✔ light weight and hassle free library<br>
+✔ select address<br>
+✔ save favourite address<br>
+✔ edit address<br>
 
 ## Usage
 Download sample for better understanding
