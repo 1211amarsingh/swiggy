@@ -1,5 +1,15 @@
 <h1>Swiggy</h1><br>
-Address Pick From Map or Plack Picker Library
+Address and Latlong Pick From Map or Plack Picker Library
+
+<h2>Key Features:</h2>
+✔ works with any version of app and display<br>
+✔ select address by placer picker, map<br>
+✔ auto save recent selected address<br>
+✔ view recent address<br>
+✔ light weight and hassle free library<br>
+✔ select address<br>
+✔ save favourite address<br>
+✔ edit address<br>
 
 ## Usage
 Download sample for better understanding
@@ -109,9 +119,14 @@ Latest Version : [![](https://jitpack.io/v/1211amarsingh/swiggy.svg)](https://ji
 ## Contributor
 <b>Pramit Chaturvedi</b>   
 <a href="https://www.linkedin.com/in/pramit-chaturvedi-02064147/">
-		<img src="https://github.com/1211amarsingh/PrivacyPolicy/blob/master/linkedinbadge.png" style="max-width:100%;" width="30%"/>
+		<img src="https://github.com/1211amarsingh/PrivacyPolicy/blob/master/linkedinbadge.png" style="max-width:100%;" width="30%"/></a>
     
 <p align="center">
 	<a href="https://play.google.com/store/apps/details?id=com.kv.swiggyaddresspick">
-		<img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png" style="max-width:100%;" width="30%"/>
+		<img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png" style="max-width:100%;" width="30%"/></a>
 </p>
+
+---------------------------------------------------------
+We're always excited to hear from you! If you have any request, suggestions, feedback, questions, or concerns, please email us at:
+
+ <a href="mailto:1211AMARSINGH@GMAIL.COM" >1211AMARSINGH@GMAIL.COM</a>
