@@ -1,19 +1,10 @@
 package com.kv.swiggyaddress;
 
-import android.Manifest;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Location;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomSheetBehavior;
-import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.TextInputEditText;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -22,6 +13,10 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -29,15 +24,16 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.gson.Gson;
-import com.kv.swiggyaddress.util.location.GooglePlacePicker;
 import com.kv.swiggyaddress.util.KeyboardHandler;
 import com.kv.swiggyaddress.util.Log;
 import com.kv.swiggyaddress.util.SelectedLinearLayout;
 import com.kv.swiggyaddress.util.Toast;
 import com.kv.swiggyaddress.util.UserData;
 import com.kv.swiggyaddress.util.drawable_edittext_click.CustomEditText;
-import com.kv.swiggyaddress.util.drawable_edittext_click.DrawableClickListener;
+import com.kv.swiggyaddress.util.location.GooglePlacePicker;
 import com.kv.swiggyaddress.util.progress.AVLoadingIndicatorView;
 
 import java.util.ArrayList;
@@ -482,7 +478,7 @@ public class SelectLocationDetailsActivity extends AppCompatActivity
         tvSkip.setVisibility(View.VISIBLE);
         llButton.setVisibility(View.GONE);
         llBottom.setVisibility(View.VISIBLE);
-        bottomSheetBehavior.setState(3);
+        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
     }
 
     private void setCameraPositionBySlide(Location location) {

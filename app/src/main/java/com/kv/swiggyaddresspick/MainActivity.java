@@ -1,16 +1,20 @@
 package com.kv.swiggyaddresspick;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Display;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.reward.RewardedVideoAd;
@@ -18,7 +22,6 @@ import com.kv.swiggyaddress.SelectLocationActivity;
 import com.kv.swiggyaddress.util.Toast;
 import com.kv.swiggyaddress.util.UserData;
 
-import java.nio.MappedByteBuffer;
 import java.util.ArrayList;
 
 import butterknife.BindView;
@@ -49,38 +52,59 @@ public class MainActivity extends AppCompatActivity {
     TextView tvLat;
     @BindView(R.id.tv_lng)
     TextView tvLng;
+
     private RewardedVideoAd rewardedVideoAd;
-    private boolean isrewardedVideoshow;
+
+    @BindView(R.id.ad_view_container)
+    FrameLayout adViewContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        viewAdsBanner();
-        loadRewardedVideoAd();
+
+        adViewContainer.post(this::loadBanner);
     }
 
-    private void viewAdsBanner() {
+    private AdSize getAdSize() {
+        Display display = getWindowManager().getDefaultDisplay();
+        DisplayMetrics outMetrics = new DisplayMetrics();
+        display.getMetrics(outMetrics);
+
+        float density = outMetrics.density;
+
+        int widthPixels = outMetrics.widthPixels;
+
+        int adWidth = (int) (widthPixels / density);
+        return AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(this, adWidth);
+    }
+
+    private void loadBanner() {
         MobileAds.initialize(this, this.getResources().getString(R.string.app_id));
-        AdView mAdView = findViewById(R.id.adView);
+
+        AdView mAdView = new AdView(this);
+
+        mAdView.setAdUnitId(this.getResources().getString(R.string.ad_unit_id_banner1));
+        adViewContainer.removeAllViews();
+        adViewContainer.addView(mAdView);
+
+        AdSize adSize = getAdSize();
+        mAdView.setAdSize(adSize);
         mAdView.loadAd(new AdRequest.Builder().build());
     }
 
     private void loadRewardedVideoAd() {
-        if (!isrewardedVideoshow) {
-            if (rewardedVideoAd == null) {
-                rewardedVideoAd = MobileAds.getRewardedVideoAdInstance(this);
-            }
-            if (!rewardedVideoAd.isLoaded()) {
-                rewardedVideoAd.loadAd(this.getResources().getString(R.string.ad_unit_id_reward1), new AdRequest.Builder().build());
-            }
-            if (rewardedVideoAd.isLoaded()) {
-                rewardedVideoAd.show();
-                isrewardedVideoshow = true;
-            } else {
-                Log.d("TAG", "The interstitial wasn't loaded yet.");
-            }
+        if (rewardedVideoAd == null) {
+            rewardedVideoAd = MobileAds.getRewardedVideoAdInstance(this);
+        }
+        if (!rewardedVideoAd.isLoaded()) {
+            rewardedVideoAd.loadAd(this.getResources().getString(R.string.ad_unit_id_reward1), new AdRequest.Builder().build());
+        }
+        if (rewardedVideoAd.isLoaded()) {
+            rewardedVideoAd.show();
+        } else {
+            Log.d("TAG", "The interstitial wasn't loaded yet.");
         }
     }
 
@@ -117,6 +141,8 @@ public class MainActivity extends AppCompatActivity {
 
     @OnClick({R.id.bt_select, R.id.bt_edit, R.id.bt_addnew})
     public void onViewClicked(View view) {
+        loadRewardedVideoAd();
+
         switch (view.getId()) {
             case R.id.bt_select:
                 selectaddress();
@@ -128,7 +154,6 @@ public class MainActivity extends AppCompatActivity {
                 addNewAddress();
                 break;
         }
-        loadRewardedVideoAd();
     }
 
     private ArrayList<UserData.Address> getSavedAddress() {
@@ -184,5 +209,4 @@ public class MainActivity extends AppCompatActivity {
         tvLng.setText("" + address.getLng());
         btEdit.setVisibility(View.VISIBLE);
     }
-
 }

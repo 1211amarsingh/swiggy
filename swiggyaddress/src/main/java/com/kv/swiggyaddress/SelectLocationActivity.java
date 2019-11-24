@@ -2,22 +2,24 @@ package com.kv.swiggyaddress;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.TextInputEditText;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.android.gms.common.api.Status;
-import com.google.android.gms.location.places.AutocompleteFilter;
-import com.google.android.gms.location.places.Place;
-import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
-import com.google.android.gms.location.places.ui.PlaceSelectionListener;
+import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.api.net.PlacesClient;
+import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
+import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
+import com.google.android.material.textfield.TextInputEditText;
 import com.kv.swiggyaddress.util.Constant;
 import com.kv.swiggyaddress.util.Toast;
 import com.kv.swiggyaddress.util.UserData;
@@ -27,6 +29,7 @@ import com.kv.swiggyaddress.util.location.LocationInstance;
 import com.kv.swiggyaddress.util.progress.AVLoadingIndicatorView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import static com.kv.swiggyaddress.PermissionHandling.checkRequiredPermissions;
 import static com.kv.swiggyaddress.util.LocalStorage.getRecentAddress;
@@ -125,29 +128,69 @@ public class SelectLocationActivity extends AppCompatActivity {
     }
 
     private void setPlacePicker() {
-        PlaceAutocompleteFragment autocompleteFragment = (PlaceAutocompleteFragment)
-                getFragmentManager().findFragmentById(R.id.autocomplete_fragment);
+        //provide your api else auto complete not work
+        String apiKey = "AIzaSyCn2caN7B99-S1AUPZ4PI1-yDnDPtWIJk4";
 
-        AutocompleteFilter filter = new AutocompleteFilter.Builder()
-                .setCountry("IN")
-                .build();
-        autocompleteFragment.setFilter(filter);
+        /**
+         * Initialize Places. For simplicity, the API key is hard-coded. In a production
+         * environment we recommend using a secure mechanism to manage API keys.
+         */
+        if (!Places.isInitialized()) {
+            Places.initialize(getApplicationContext(), apiKey);
+        }
+
+// Create a new Places client instance.
+        PlacesClient placesClient = Places.createClient(this);
+        String TAG = "PlacePicker";
+        AutocompleteSupportFragment autocompleteFragment = (AutocompleteSupportFragment)
+                getSupportFragmentManager().findFragmentById(R.id.autocomplete_fragment);
+
+        autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME));
+
         autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
             @Override
             public void onPlaceSelected(Place place) {
-                intent = getIntent();
-                intent.putExtra("replace", true);
-                intent.setClass(activity, SelectLocationDetailsActivity.class);
-                intent.putExtra("lat", place.getLatLng().latitude);
-                intent.putExtra("lng", place.getLatLng().longitude);
-                startActivityForResult(intent, 1000);
+                // TODO: Get info about the selected place.
+                Log.i(TAG, "Place: " + place.getName() + ", " + place.getId());
             }
 
             @Override
             public void onError(Status status) {
-                Log.e("error", status.getStatus() + "" + status.getStatusCode());
+                // TODO: Handle the error.
+                Log.i(TAG, "An error occurred: " + status);
+                Toast.showToast(SelectLocationActivity.this,"Api Limit Expaired");
             }
         });
+
+
+
+
+
+
+//      Depricated
+//        PlaceAutocompleteFragment autocompleteFragment = (PlaceAutocompleteFragment)
+//                getFragmentManager().findFragmentById(R.id.autocomplete_fragment);
+//
+//        AutocompleteFilter filter = new AutocompleteFilter.Builder()
+//                .setCountry("IN")
+//                .build();
+//        autocompleteFragment.setFilter(filter);
+//        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+//            @Override
+//            public void onPlaceSelected(Place place) {
+//                intent = getIntent();
+//                intent.putExtra("replace", true);
+//                intent.setClass(activity, SelectLocationDetailsActivity.class);
+//                intent.putExtra("lat", place.getLatLng().latitude);
+//                intent.putExtra("lng", place.getLatLng().longitude);
+//                startActivityForResult(intent, 1000);
+//            }
+//
+//            @Override
+//            public void onError(Status status) {
+//                Log.e("error", status.getStatus() + "" + status.getStatusCode());
+//            }
+//        });
     }
 
     private void setAddressAdapter(UserData userData) {
