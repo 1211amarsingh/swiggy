@@ -1,19 +1,22 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 30
     defaultConfig {
         applicationId "com.kv.swiggyaddresspick"
         minSdkVersion 21
-        targetSdkVersion 29
-        versionCode 4
-        versionName "1.2"
+        targetSdkVersion 30
+        versionCode 6
+        versionName "1.2.2"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug{
+
         }
     }
     //for java version required

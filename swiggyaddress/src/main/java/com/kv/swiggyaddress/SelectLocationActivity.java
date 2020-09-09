@@ -16,10 +16,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.gms.common.api.Status;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.Place;
-import com.google.android.libraries.places.api.net.PlacesClient;
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
 import com.google.android.material.textfield.TextInputEditText;
+import com.kv.swiggyaddress.util.Base64;
 import com.kv.swiggyaddress.util.Constant;
 import com.kv.swiggyaddress.util.Toast;
 import com.kv.swiggyaddress.util.UserData;
@@ -30,6 +30,7 @@ import com.kv.swiggyaddress.util.progress.AVLoadingIndicatorView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 import static com.kv.swiggyaddress.PermissionHandling.checkRequiredPermissions;
 import static com.kv.swiggyaddress.util.LocalStorage.getRecentAddress;
@@ -51,6 +52,7 @@ public class SelectLocationActivity extends AppCompatActivity {
     private SelectLocationAdapter selectLocationAdapterSaved, selectLocationAdapterRecent;
     private UserData userData;
     private boolean selectCurrentLocation;
+    String k = Base64.decode(BuildConfig.API);
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -129,7 +131,7 @@ public class SelectLocationActivity extends AppCompatActivity {
 
     private void setPlacePicker() {
         //provide your api else auto complete not work
-        String apiKey = "AIzaSyCn2caN7B99-S1AUPZ4PI1-yDnDPtWIJk4";
+        String apiKey = k;
 
         /**
          * Initialize Places. For simplicity, the API key is hard-coded. In a production
@@ -140,31 +142,32 @@ public class SelectLocationActivity extends AppCompatActivity {
         }
 
 // Create a new Places client instance.
-        PlacesClient placesClient = Places.createClient(this);
         String TAG = "PlacePicker";
         AutocompleteSupportFragment autocompleteFragment = (AutocompleteSupportFragment)
                 getSupportFragmentManager().findFragmentById(R.id.autocomplete_fragment);
 
-        autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME));
+        autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME, Place.Field.LAT_LNG));
 
         autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
             @Override
             public void onPlaceSelected(Place place) {
                 // TODO: Get info about the selected place.
                 Log.i(TAG, "Place: " + place.getName() + ", " + place.getId());
+
+                intent = getIntent();
+                intent.putExtra("lat", place.getLatLng().latitude);
+                intent.putExtra("lng", place.getLatLng().longitude);
+                intent.setClass(activity, SelectLocationDetailsActivity.class);
+                startActivityForResult(intent, 1000);
             }
 
             @Override
             public void onError(Status status) {
                 // TODO: Handle the error.
                 Log.i(TAG, "An error occurred: " + status);
-                Toast.showToast(SelectLocationActivity.this,"Api Limit Expaired");
+                Toast.showToast(SelectLocationActivity.this, "Api Limit Expaired");
             }
         });
-
-
-
-
 
 
 //      Depricated

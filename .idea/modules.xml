@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/SwiggyAddressPick.iml" filepath="$PROJECT_DIR$/SwiggyAddressPick.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/swiggyaddress/swiggyaddress.iml" filepath="$PROJECT_DIR$/swiggyaddress/swiggyaddress.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SwiggyAddressPick.iml" filepath="$PROJECT_DIR$/SwiggyAddressPick.iml" group="SwiggyAddressPick" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="SwiggyAddressPick/app" />
+      <module fileurl="file://$PROJECT_DIR$/swiggyaddress/swiggyaddress.iml" filepath="$PROJECT_DIR$/swiggyaddress/swiggyaddress.iml" group="SwiggyAddressPick/swiggyaddress" />
     </modules>
   </component>
 </project>
